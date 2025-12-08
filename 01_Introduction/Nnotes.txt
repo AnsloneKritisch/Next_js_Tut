@@ -1,0 +1,75 @@
+The babel-plugin-react-compiler is a Babel plugin that integrates the React Compiler into your build process. The React Compiler is an optimizing compiler designed to improve the performance of React applications by automatically memoizing components and hooks, thereby reducing unnecessary re-renders.
+
+This is how you can install it :-
+
+npm install babel-plugin-react-compiler@latest
+
+
+Then go to next config.ts and 
+
+add ->  reactCompiler : true ,
+
+
+-------------------------------------
+code :
+
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  reactCompiler : true ,
+  experimental : {
+    turbopackFileSystemCacheForDev : true ,
+  }
+};
+
+export default nextConfig;
+
+___________________________________________________________________
+
+Routing In Next JS
+
+Here you can simulate the routing in next js by using the folder structure of the app directory .
+
+Go to the app directory and create a folder with the name of the route you want to create . 
+
+For example , if you want to create a route for the about page , you can create a folder named about inside the app directory .
+
+Then create a page.tsx file inside the about folder . 
+
+This page.tsx file will be the page that will be rendered when the user visits the about page .
+
+Simply means , 
+              folder name ->  the route name 
+              and the 
+              page.tsx -> is the page that will be rendered when the user visits the route .
+
+             app
+              ├── about
+              │   └── page.tsx
+
+
+____________________________________________________________________
+
+But Simply creating Routes is not at all good
+
+For example - like for Dashboard where for once page we need a lot routes , like -> Dashboard -> users and analytics
+
+Then what will you do ?
+
+Normally for about us ek routes sa kaam chal jayaga 
+but dashboard mein toh uska user data and etc bahut sare routes laga 
+
+SO just to solve this problem 
+We have -> Nested Routes 
+
+Now How Does it works ??
+
+Simply create a folder name 
+ Dashboard -> inside it create
+          user with -> page.tsx
+          analytics with -> page.tsx
+
+NOw -> you can easily have 
+routes like -> Dashboard/analytics 
+            -> Dashboard/users
+

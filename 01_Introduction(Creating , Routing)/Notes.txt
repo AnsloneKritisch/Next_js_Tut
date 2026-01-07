@@ -191,5 +191,141 @@ NOw -> you can easily have
 routes like -> Dashboard/analytics 
             -> Dashboard/users
 
-// TODO:
+This is basically how you can create nested routes in next js .
+
+____________________________________________________________________
+
+Now you can easily create routes like -> Dashboard/users and Dashboard/analytics
+
+Which is cool <3 but there is a problem here , 
+
+The problem is with Users -> LIke think do we have only one user?????
+or
+do we have multiple users ???
+
+So how will you handle this ??
+So for this we have -> Dynamic Routes
+
+Now what is a Dynamic Route ??
+Dynamic routes are pages whose URL changes dynamically.
+In simple words: One page → many URLs
+
+Using this you won't have to create a new route for each user. We can use a single route for all users and then use the user id to fetch the user data.
+
+🧠 Why Dynamic Routes are needed
+
+Without dynamic routes ❌:
+You would need 100s of pages
+One page for each user
+
+With dynamic routes ✅:
+One page handles all users
+Clean and scalable
+
+How to create dynamic routes in Next.js?
+
+You can create dynamic routes by using the [id] placeholder.
+For example, if you want to create a dynamic route for users, you can create a folder named [id] inside the users folder.
+Then create a page.tsx file inside the [id] folder.
+This page.tsx file will be the page that will be rendered when the user visits the user page.
+
+folder structure :
+
+app/
+ └─ dashboard/
+    └─ users/
+       ├─ page.tsx          → /dashboard/users
+       └─ [id]/
+          └─ page.tsx       → /dashboard/users/1,2,3...
+
+
+
+IN users -> page.tsx you can have all the users
+
+## Never Forget to import Link from next/link
+because it is used to create the links to the pages
+
+code :
+
+import Link from "next/link";
+
+const Users = () => {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <h2>Users Section</h2>
+
+      <ul className="mt-10">
+        <li><Link href="/dashboard/users/1">User 1</Link></li>
+        <li><Link href="/dashboard/users/2">User 2</Link></li>
+        <li><Link href="/dashboard/users/3">User 3</Link></li>
+        <li><Link href="/dashboard/users/4">User 4</Link></li>
+      </ul>
+    </div>
+  );
+};
+
+export default Users;
+
+
+SO here we can see that we have created a dynamic route for users. Now we can access the user page by using the user id.
+
+Now we have a dynamic route for users. Now we can create a page for each user.
+
+
+Now we can create a page for each user by creating a page.tsx file inside the [id] folder.
+
+code :
+
+const userdetails = async({params} : {params :  Promise<{id : string}>})=> {
+
+  const {id} = await params;  
+  return (
+    // <div>userdetails</div>
+    <div>
+      <h1>Showing Details of User</h1>
+      <h2>User ID: {id}</h2>
+    </div>
+  )
+}
+
+export default userdetails
+
+
+## What is `params`?
+
+👉 `params` contains **dynamic route values**
+
+For URL: /dashboard/users/3
+
+
+You get: params = { id: "3" }
+
+✔ Automatically provided by Next.js
+✔ No extra code needed
+
+
+## 🔹 Why `async` here?
+
+Dynamic pages often:
+* Fetch user data
+* Call APIs
+* Load database info
+
+So: const userdetails = async (...)
+
+✔ Allows `await`
+✔ Works in server component
+
+---
+
+# 🧠 Real-life analogy
+
+🏨 Hotel rooms:
+
+* One room design
+* Different room numbers
+
+`[id]` = room number
+`page.tsx` = room design
 
